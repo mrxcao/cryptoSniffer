@@ -12,11 +12,11 @@ const SELL_PRICE = 34501;
 const actions = [];
 
 async function start() {
-	console.clear();
-	console.log(':: NODE_ENV', process.env.NODE_ENV);
-
 	const data = await binance.getBTC();
 	if (data) {
+		console.clear();
+		console.log(':: NODE_ENV', new Date(), process.env.NODE_ENV);
+
 		const candle = data[data.length - 1];
 		const price = parseFloat(candle[4]);
 
@@ -25,12 +25,18 @@ async function start() {
 		console.log('SMA: ' + sma);
 		console.log('IsOpened: ' + isOpened);
 
-		if (price <= (sma * 0.9) && isOpened === false) {
+		const buyPrice = (sma * 0.9);
+		const sellPrice = (sma * 1.1);
+
+		console.log('buyPrice', buyPrice);
+		console.log('sellPrice', sellPrice);
+
+		if (price <= buyPrice && isOpened === false) {
 			console.log('comprar');
 			actions.push({ type: 'BUY', time: new Date(), price });
 			isOpened = true;
 		}
-		else if (price >= (sma * 1.1) && isOpened === true) {
+		else if (price >= sellPrice && isOpened === true) {
 			console.log('vender');
 			actions.push({ type: 'SELL', time: new Date(), price });
 			isOpened = false;
