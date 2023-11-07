@@ -25,8 +25,8 @@ async function start() {
 		console.log('SMA:        ' + sma);
 
 
-		const buyPrice = (sma * 0.9);
-		const sellPrice = (sma * 1.1);
+		const buyPrice = (sma * 0.999);
+		const sellPrice = (sma * 1.0001);
 
 		console.log('buyPrice:  ', buyPrice);
 		console.log('sellPrice: ', sellPrice);
