@@ -36,6 +36,8 @@ async function start() {
 			isOpened = false;
 		}
 		else {console.log(`:: ${aguardar / 1000}sec`);}
+		const gain = tools.getGain(actions);
+		console.log('gain', gain);
 		console.log('actions', actions);
 	}
 }
