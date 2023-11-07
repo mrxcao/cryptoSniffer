@@ -16,20 +16,20 @@ async function start() {
 	if (data) {
 		console.clear();
 		console.log(':: NODE_ENV', new Date(), process.env.NODE_ENV);
-
+		console.log('IsOpened:   ' + isOpened);
 		const candle = data[data.length - 1];
 		const price = parseFloat(candle[4]);
 
-		console.log('Price: ' + price);
+		console.log('Price:      ' + price);
 		const sma = tools.calcSMA(data);
-		console.log('SMA: ' + sma);
-		console.log('IsOpened: ' + isOpened);
+		console.log('SMA:        ' + sma);
+
 
 		const buyPrice = (sma * 0.9);
 		const sellPrice = (sma * 1.1);
 
-		console.log('buyPrice', buyPrice);
-		console.log('sellPrice', sellPrice);
+		console.log('buyPrice:  ', buyPrice);
+		console.log('sellPrice: ', sellPrice);
 
 		if (price <= buyPrice && isOpened === false) {
 			console.log('comprar');
