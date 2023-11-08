@@ -10,9 +10,11 @@ const SELL_PRICE = 34501;
 */
 
 const actions = [];
+let contador = 0;
 
 async function start() {
 	const data = await binance.getBTC();
+	contador++;
 	if (data) {
 
 		const candle = data[data.length - 1];
@@ -40,7 +42,7 @@ async function start() {
 			actions.push({ type: 'SELL', time: new Date(), price });
 			isOpened = false;
 		}
-		else {console.log(`:: ${aguardar / 1000}sec`);}
+		else {console.log(`:: ${aguardar / 1000}sec   ${contador} times`);}
 		const gain = tools.getGain(actions);
 		console.log('gain', gain);
 		console.log('actions', actions);
