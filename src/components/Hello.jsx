@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from '../logo.svg';
 
 function Hello() {
   return (
 
     <header className="App-header">
       <h1>Hello!</h1>
-      <img src={logo} className="App-logo" alt="logo" />
+
       <p>
         {' '}
 
