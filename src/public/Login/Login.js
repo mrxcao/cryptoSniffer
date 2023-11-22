@@ -1,28 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-// import { doLogin } from '../../services/AuthService';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { doLogin } from '../../services/AuthService';
 
 function Login() {
 
-    //const history = useHistory();
-    //const [email, setEmail] = useState('');
-    //const [password, setPassword] = useState('');
+    const history = useHistory();
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
     // const [error, setError] = useState('');
 
-    function onChangeInput(event) {
-        if (event.target.id === 'email')
-            setEmail(event.target.value);
+    function onChangeInput(event) {        
+        if (event.target.id === 'login')
+            setLogin(event.target.value);
         else
             setPassword(event.target.value);
+        
     }
 
-    function onSubmit(event) {
+    async function onSubmit(event) {
         event.preventDefault();
-/*
-        doLogin(email, password)
+        const isValid = await  doLogin(login, password)
+        console.log('isValid',isValid);
+        if (isValid) {
+            history.push('/');
+        } else  {
+            history.push('/login');
+        }
+
+
+        /*
+        doLogin(login, password)
             .then(response => {
-                localStorage.setItem('token', response.token);
-                history.push('/dashboard');
+                // localStorage.setItem('token', response.token);
+                history.push('/settings');
             })
             .catch(err => {
                 console.error(err);
