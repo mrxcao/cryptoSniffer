@@ -7,27 +7,27 @@ function Login() {
     const history = useHistory();
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    // const [error, setError] = useState('');
+    const [error, setError] = useState('');
 
     function onChangeInput(event) {        
         if (event.target.id === 'login')
             setLogin(event.target.value);
         else
-            setPassword(event.target.value);
-        
+            setPassword(event.target.value);        
     }
 
-    async function onSubmit(event) {
-        event.preventDefault();
-        const isValid = await  doLogin(login, password)
-        console.log('isValid',isValid);
-        if (isValid) {
-            history.push('/');
-        } else  {
-            history.push('/login');
-        }
-
-
+    function onSubmit(event) {
+        event.preventDefault();        
+        doLogin(login, password)
+            .then(isValid => {
+                if (isValid) history.push('/')
+            })
+            .catch(err => {
+                //console.log('Login error',err);
+                setError('Login falhou')
+                
+            })
+            
         /*
         doLogin(login, password)
             .then(response => {
@@ -85,14 +85,13 @@ function Login() {
                                         <div className="d-grid">
                                             <button type="submit" className="btn btn-gray-800">LOGAR</button>
                                         </div>
-                                        {/*
-                                        {
-                                            error ?
-                                                <div className="alert alert-danger mt-2">{error}</div>
-                                                : <React.Fragment></React.Fragment>
-                                        }
                                         
-                                        */}
+                                            {
+                                              //  console.log('error',error)
+                                              error ?  <div className="alert alert-danger mt-2">{error}</div>                                                    : <React.Fragment></React.Fragment>
+                                            }
+                                        
+                                        
                                     </form>
 
 

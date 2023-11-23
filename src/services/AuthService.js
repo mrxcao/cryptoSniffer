@@ -9,7 +9,7 @@ export async function doLogin(login, password) {
     if (login==='mrxcao') {
         return true
     } else {
-        return false
+        throw false
     }
 }
 

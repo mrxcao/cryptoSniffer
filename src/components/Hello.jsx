@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 function Hello() {
   return (
 
@@ -17,6 +17,9 @@ function Hello() {
         <code>src/App.js</code>
         {' '}
         and save to reload.
+
+        
+        <div className="alert"><Link to="/login" className="small text-right">LOGIN</Link></div>
       </p>
       <a
         className="App-link"

@@ -16,7 +16,6 @@ function Settings() {
     // const history = useHistory();
 
     const [error, setError] = useState('');
-
     const [success, setSuccess] = useState('');
 
     useEffect(() => {
