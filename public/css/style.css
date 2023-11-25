@@ -1,3 +1,60 @@
 .loginLeft {
     margin-top: 30px;
 }
+.appTitle {
+    padding: 1px;
+    font-size: 25px;
+    font-style: initial;
+    font-family: 'Futura', sans-serif; 
+    font-weight: 1000; 
+    color: rgba(252,198,62,255);  
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #efefef;
+    color: #817d7d;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  nav li {
+    margin-right: 15px;
+  }
+  
+  .login-button-container {            
+    display: flex;
+    align-items: center;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 10px;    
+    padding-left: 100px;
+    
+  }
+  
+  .login-button {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    border-radius: 90px;
+    cursor: pointer;
+  }
+  
+  html {    
+    background-image: url('../img/backgroud.png'); 
+    background-size: cover; 
+    
+    
+  }

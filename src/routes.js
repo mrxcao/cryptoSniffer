@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 //import Dashboard from './private/Dashboard/Dashboard';
 //import Orders from './private/Orders/Orders';
-import Hello from './components/Hello';
 import Settings from './private/settings/Settings';
+import Home from './public/Home/Home';
 import Login from './public/Login/Login';
 
 function Routes() {
@@ -21,7 +21,7 @@ function Routes() {
     return (
         <BrowserRouter>
             <Route path="/" exact>
-                <Hello />
+                <Home />
             </Route>
             <Route path="/login" exact>
             <Login />
