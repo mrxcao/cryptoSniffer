@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import Menu from '../../components/Menu/Menu';
 import { doLogin } from '../../services/AuthService';
-
 function Login() {
 
     const history = useHistory();
@@ -42,6 +42,10 @@ function Login() {
     }
 
     return (
+        <React.Fragment>
+        <Menu />
+        
+
         <main>
             <section className="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
                 <div className="container">                
@@ -53,7 +57,7 @@ function Login() {
                                         <img src="/img/favicon/favicon.png" alt="CryptoSniffer" width={64} />
                                     </div>                            
                                     <div className="text-center text-md-center mb-4 mt-md-0">
-                                        <h1 className="mb-0 h3">LOGIN</h1>
+                                        <h1 className="mb-0 h3 alertTitle">LOGIN</h1>
                                     </div>
                                 </div>
                                 <div className="col-md-8">
@@ -110,6 +114,7 @@ function Login() {
                 </div>
             </section>
         </main>
+        </React.Fragment>
     );
 }
 

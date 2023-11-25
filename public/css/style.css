@@ -10,7 +10,11 @@
     color: rgba(252,198,62,255);  
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
-
+.alertTitle {
+  font-weight: 1000; 
+  color: rgba(252,198,62,255);  
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);  
+}
 
 header {
     display: flex;

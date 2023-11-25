@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 //import Dashboard from './private/Dashboard/Dashboard';
 //import Orders from './private/Orders/Orders';
+import NotFound from './components/Pages/NotFound';
 import Settings from './private/settings/Settings';
 import Home from './public/Home/Home';
 import Login from './public/Login/Login';
@@ -20,23 +21,27 @@ function Routes() {
 
     return (
         <BrowserRouter>
-            <Route path="/" exact>
-                <Home />
-            </Route>
-            <Route path="/login" exact>
-            <Login />
-            </Route>            
-            <PrivateRoute path="/settings">
-                <Settings />
-            </PrivateRoute>
-            
-            {/* <PrivateRoute path="/orders/:symbol?">
-                <Orders />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard">
-                <Dashboard />
-            </PrivateRoute>
-             */}
+            <Switch>
+                <Route path="/" exact>
+                    <Home />
+                </Route>
+                <Route path="/login" exact>
+                <Login />
+                </Route>            
+                <PrivateRoute path="/settings">
+                    <Settings />
+                </PrivateRoute>
+                
+                {/* <PrivateRoute path="/orders/:symbol?">
+                    <Orders />
+                </PrivateRoute>
+                <PrivateRoute path="/dashboard">
+                    <Dashboard />
+                </PrivateRoute>
+                */}
+
+                <Route component={NotFound} />
+            </Switch>
         </BrowserRouter>
     )
 }
