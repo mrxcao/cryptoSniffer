@@ -20,11 +20,14 @@ function Login() {
         event.preventDefault();        
         doLogin(login, password)
             .then(isValid => {
-                if (isValid) history.push('/')
+                if (isValid) {
+                    localStorage.setItem('token', isValid.token)    
+                    history.push('/')
+                }
             })
             .catch(err => {
                 // console.log('Login error',err);
-                setError('Login falhou')
+                setError('Login falhou'+err)
                 
             })
             

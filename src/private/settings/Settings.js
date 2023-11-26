@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // import Menu from '../../components/Menu/Menu';
 // import { getSettings, updateSettings } from '../../services/SettingsService';
 // import Symbols from '../Settings/Symbols';
-
+import Menu from '../../components/Menu/Menu';
 function Settings() {
 
     const inputEmail = useRef('');
@@ -77,7 +77,8 @@ function Settings() {
 
     return (
         <React.Fragment>
-
+      
+        <Menu />
             {/* <Menu /> */}
             <main className="content">
                 <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">

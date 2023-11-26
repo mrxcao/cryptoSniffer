@@ -6,7 +6,6 @@ function Home() {
         <Menu />
         <main className="content">
 
-
         <div className="container mt-5">
           <div className="row">
             <div className="col-lg-6">
