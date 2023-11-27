@@ -3,7 +3,29 @@ import React, { useEffect, useRef, useState } from 'react';
 // import { getSettings, updateSettings } from '../../services/SettingsService';
 // import Symbols from '../Settings/Symbols';
 import Menu from '../../components/Menu/Menu';
+import { getSettings } from '../../services/SettingsService';
+
 function Settings() {
+    const [settings, setSettings] = useState({
+        email:''
+    })
+
+
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        
+        getSettings(token)
+          .then(resp=> {
+            setSettings(resp)
+            inputEmail.current.value = settings.email;
+           // document.getElementById('email').removeAttribute('readOnly');
+          })
+          .catch(err=> {
+            if (err.response && err.response.status === 401)
+                    return history.push('/')
+            setError(err)
+          })
+    }, [])
 
     const inputEmail = useRef('');
     const inputNewPassword = useRef('');
@@ -18,25 +40,7 @@ function Settings() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    useEffect(() => {
-        /*
-        const token = localStorage.getItem('token');
-        
-        getSettings(token)
-            .then(settings => {
-                inputEmail.current.value = settings.email;
-                inputApiUrl.current.value = settings.apiUrl;
-                inputStreamUrl.current.value = settings.streamUrl;
-                inputAccessKey.current.value = settings.accessKey;
-            })
-            .catch(err => {
-                if (err.response && err.response.status === 401)
-                    return history.push('/')
-
-                setError(err.response ? err.response.data : err.message);
-            })
-            */
-    }, [])
+   
 
     function onFormSubmit(event) {
         event.preventDefault();
@@ -76,10 +80,9 @@ function Settings() {
     }
 
     return (
-        <React.Fragment>
-      
+        <React.Fragment>      
         <Menu />
-            {/* <Menu /> */}
+            
             <main className="content">
                 <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
                     <div className="d-block mb-4 mb-md-0">
@@ -91,11 +94,13 @@ function Settings() {
                         <div className="card card-body border-0 shadow mb-4">
                             <form>
                                 <h2 className="h5 mb-4">General Info</h2>
+                                {settings.email}
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div className="form-group">
                                             <label htmlFor="email">Email</label>
-                                            <input ref={inputEmail} className="form-control" id="email" type="email" placeholder="name@company.com" />
+                                            <input ref={inputEmail} className="form-control" id="email"                                             
+                                                   type="email" placeholder="name@company.com" autoComplete="off" />
                                         </div>
                                     </div>
                                 </div>
