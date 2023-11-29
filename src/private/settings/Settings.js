@@ -98,8 +98,8 @@ function Settings() {
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div className="form-group">
-                                            <label htmlFor="email">Email</label>
-                                            <input ref={inputEmail} className="form-control" id="email"                                             
+                                            <label htmlFor="email_">Email</label>
+                                            <input ref={inputEmail} className="form-control" id="email_"
                                                    type="email" placeholder="name@company.com" autoComplete="off" />
                                         </div>
                                     </div>
@@ -107,8 +107,8 @@ function Settings() {
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div>
-                                            <label htmlFor="newPassword">New Password</label>
-                                            <input ref={inputNewPassword} className="form-control" id="newPassword" type="password" placeholder="Enter your new password" />
+                                            <label htmlFor="newPassword_">New Password</label>
+                                            <input ref={inputNewPassword} className="form-control" id="newPassword_" type="password" placeholder="Enter your new password" />
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-3">

@@ -1,7 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { doLogout } from '../../services/AuthService';
 
 function NavBar() {
+  const history = useHistory();
+
+  function onLogoutClick(event) {
+    doLogout()
+    localStorage.removeItem('token')
+    history.push('/login')
+  //  alert(event)
+  }
+
   return (
     <React.Fragment>   
       <header>
@@ -14,9 +24,13 @@ function NavBar() {
           Logar
         </Link>        
         
-        <Link to="/login">        
+
+        {localStorage.getItem("token") && 
+          <button onClick={onLogoutClick}>logout</button>}
+        {localStorage.getItem("token") == null&& <Link to="/login">        
           <button className="login-button">Login</button>        
-        </Link>     
+        </Link>     }
+        
         
         
         {/* <div className="d-flex align-items-center">

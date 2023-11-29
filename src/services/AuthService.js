@@ -9,9 +9,9 @@ export async function doLogin(login, password) {
     return response.data;
 }
 
-export async function doLogout(token) {
+export async function doLogout() {
     const logoutUrl = `${API_URL}/logout`;
-    const headers = { 'authorization': token };
+    const headers = { 'authorization': localStorage.getItem('token') };
     const response = await axios.post(logoutUrl, {}, { headers });
     return response.data;
 }
