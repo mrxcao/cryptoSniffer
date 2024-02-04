@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+//import React from 'react';
 import Menu from '../../components/Menu/Menu';
+
+
+
 function Home() {
+  const [apiOn, setApiOn ] = useState("")
+
+  useEffect(()=>{
+     // if(!localStorage.getItem('Wallet')) throw new Error('sem carteira')
+     console.log('verificar api online aqui')
+     /*
+     getApiOn()
+        .then( data => {
+          console.log('on',data)
+        })
+        .catch( err => {
+          console.error(err)
+        })
+        */
+  },[])
+
       return (
       <React.Fragment>
         <Menu />
