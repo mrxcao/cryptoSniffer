@@ -18,27 +18,38 @@ function NavBar() {
       <nav >      
         <Link className="navbar-brand me-lg-5" to="/dashboard">
           <img className="navbar-brand-light" src="img/favicon/favicon.png" alt="CryptoDog" />
-           <spam className="appTitle">CryptoSniffer</spam>
+           <span className="appTitle">CryptoSniffer</span>
         </Link>
+        {
+          /*
         <Link className="navbar-brand me-lg-5" to="/login">
           Logar
         </Link>        
-        
+        */
+} 
 
-        {localStorage.getItem("token") && 
-          <button onClick={onLogoutClick}>logout</button>}
-        {localStorage.getItem("token") == null&& 
-        <Link to="/login">        
-          <button className="login-button">Login</button>        
-        </Link>     }
-                
-        <div className="d-flex align-items-center">
+
+        <span className="navbar-right">
           <button className="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        </div> 
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" 
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </span>
+          </button>       
 
+          {localStorage.getItem("token") && 
+            <button onClick={onLogoutClick}>logout</button>}
+          {localStorage.getItem("token") == null&& 
+          <Link to="/login">        
+            <button className="login-button">Login</button>        
+          </Link>     }
+        </span>
+     
+        
+        
       </nav>  
       </header>         
     </React.Fragment>

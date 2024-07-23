@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
  * props:
  * - to: /settings
  * - text: Settings
+ * - children: svg
+ * - onClick: callback
  */
 function SideBarItem(props) {
 

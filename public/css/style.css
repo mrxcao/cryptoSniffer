@@ -3,7 +3,7 @@
 }
 .appTitle {
     padding: 1px;
-    font-size: 25px;
+    font-size: 22px;
     font-style: initial;
     font-family: 'Futura', sans-serif; 
     font-weight: 1000; 
@@ -33,7 +33,6 @@ header {
   nav li {
     margin-right: 15px;
   }
-  
   .login-button-container {            
     display: flex;
     align-items: center;
@@ -56,9 +55,10 @@ header {
     cursor: pointer;
   }
   
+
+
   html {    
     background-image: url('../img/backgroud.png'); 
     background-size: cover; 
-    
-    
+        
   }
