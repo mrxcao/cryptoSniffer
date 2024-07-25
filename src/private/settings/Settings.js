@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import Menu from '../../components/Menu/Menu';
+import { useHistory } from 'react-router-dom';
 // import { getSettings, updateSettings } from '../../services/SettingsService';
 // import Symbols from '../Settings/Symbols';
 import Menu from '../../components/Menu/Menu';
@@ -30,12 +30,9 @@ function Settings() {
     const inputEmail = useRef('');
     const inputNewPassword = useRef('');
     const inputConfirmPassword = useRef('');
-    const inputApiUrl = useRef('');
-    const inputStreamUrl = useRef('');
-    const inputAccessKey = useRef('');
-    const inputSecretKey = useRef('');
 
-    // const history = useHistory();
+
+    const history = useHistory();
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -84,11 +81,7 @@ function Settings() {
         <Menu />
             
             <main className="content">
-                <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-                    <div className="d-block mb-4 mb-md-0">
-                        <h1 className="h4">Settings</h1>
-                    </div>
-                </div>
+
                 <div className="row">
                     <div className="col-12">
                         <div className="card card-body border-0 shadow mb-4">
@@ -118,39 +111,7 @@ function Settings() {
                                         </div>
                                     </div>
                                 </div>
-                                <h2 className="h5 mb-4">Exchange Info</h2>
-                                <div className="row">
-                                    <div className="col-sm-12 mb-3">
-                                        <div className="form-group">
-                                            <label htmlFor="email">API URL</label>
-                                            <input ref={inputApiUrl} className="form-control" id="apiUrl" type="text" placeholder="Your API URL" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-12 mb-3">
-                                        <div className="form-group">
-                                            <label htmlFor="streamUrl">STREAM URL</label>
-                                            <input ref={inputStreamUrl} className="form-control" id="streamUrl" type="text" placeholder="Your stream URL" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-12 mb-3">
-                                        <div className="form-group">
-                                            <label htmlFor="email">Access Key</label>
-                                            <input ref={inputAccessKey} className="form-control" id="accessKey" type="text" placeholder="Your access key" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-12 mb-3">
-                                        <div className="form-group">
-                                            <label htmlFor="email">Secret Key</label>
-                                            <input ref={inputSecretKey} className="form-control" id="accessKey" type="password" placeholder="Your secret key" />
-                                        </div>
-                                    </div>
-                                </div>
+                              
                                 <div className="row">
                                     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap">
                                         <div className="col-sm-3">
