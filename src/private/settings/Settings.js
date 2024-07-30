@@ -31,13 +31,12 @@ function Settings() {
             inputApiUrl.current.value = settings.apiUrl;            
             inputStreamUrl.current.value = settings.streamUrl;
             inputAccessKey.current.value = settings.accessKey;
-            inputSecretKey.current.value = settings.secretKey;
-            
+            // inputSecretKey.current.value = settings.secretKey;            
           })
           .catch(err=> {
             if (err.response && err.response.status === 401)
                     return history.push('/')
-            setError(err)
+            setError(err.response ? err.response.data : err.message);
           })
     }, [])
 
@@ -55,7 +54,7 @@ function Settings() {
         updateSettings({
             login: inputLogin.current.value,
             email: inputEmail.current.value,
-          //  password: inputNewPassword.current.value ? inputNewPassword.current.value : null,
+            // password: inputNewPassword.current.value ? inputNewPassword.current.value : null,
             apiUrl: inputApiUrl.current.value,
             streamUrl: inputStreamUrl.current.value,
             accessKey: inputAccessKey.current.value,
@@ -64,11 +63,9 @@ function Settings() {
         .then(result => {
                 if (result) {
                     setError('');
-                    /*
                     inputSecretKey.current.value = '';
-                    inputNewPassword.current.value = '';
-                    inputConfirmPassword.current.value = '';
-                    */
+                    // inputNewPassword.current.value = '';
+                    // inputConfirmPassword.current.value = '';
                     return setSuccess(`Settings saved successfully!`);
                 }
                 else {
