@@ -8,3 +8,8 @@ export async function getSettings(authorization) {
     return response.data;
 }
 
+export async function updateSettings(props, authorization) {    
+    const headers = {authorization}
+    const response = await axios.put(`${API_URL}/settings`,props,{headers}  );
+    return response.data;
+}

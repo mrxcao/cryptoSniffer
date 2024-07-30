@@ -3,22 +3,36 @@ import { useHistory } from 'react-router-dom';
 // import { getSettings, updateSettings } from '../../services/SettingsService';
 // import Symbols from '../Settings/Symbols';
 import Menu from '../../components/Menu/Menu';
-import { getSettings } from '../../services/SettingsService';
+import { getSettings, updateSettings } from '../../services/SettingsService';
 
 function Settings() {
-    const [settings, setSettings] = useState({
-        email:''
-    })
+
+    const inputLogin = useRef('');
+    const inputEmail = useRef('');
+//    const inputNewPassword = useRef('');
+//    const inputConfirmPassword = useRef('');
+    const inputApiUrl = useRef('');
+    const inputStreamUrl = useRef('');
+    const inputAccessKey = useRef('');
+    const inputSecretKey = useRef('');
+
+    const history = useHistory();
+
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
 
     useEffect(()=>{
-        const token = localStorage.getItem('token');
-        
+        const token = localStorage.getItem('token');        
         getSettings(token)
-          .then(resp=> {
-            setSettings(resp)
-            inputEmail.current.value = settings.email;
-           // document.getElementById('email').removeAttribute('readOnly');
+          .then(settings=> {
+            inputLogin.current.value = settings.login;
+            inputEmail.current.value = settings.email;            
+            inputApiUrl.current.value = settings.apiUrl;            
+            inputStreamUrl.current.value = settings.streamUrl;
+            inputAccessKey.current.value = settings.accessKey;
+            inputSecretKey.current.value = settings.secretKey;
+            
           })
           .catch(err=> {
             if (err.response && err.response.status === 401)
@@ -27,41 +41,34 @@ function Settings() {
           })
     }, [])
 
-    const inputEmail = useRef('');
-    const inputNewPassword = useRef('');
-    const inputConfirmPassword = useRef('');
-
-
-    const history = useHistory();
-
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
-
-   
 
     function onFormSubmit(event) {
         event.preventDefault();
 
+        /*
         if ((inputNewPassword.current.value || inputConfirmPassword.current.value)
             && inputNewPassword.current.value !== inputConfirmPassword.current.value)
             return setError(`The fields New Password and Confirm Password must be equal.`);
+*/
 
-/*
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");        
         updateSettings({
+            login: inputLogin.current.value,
             email: inputEmail.current.value,
-            password: inputNewPassword.current.value ? inputNewPassword.current.value : null,
+          //  password: inputNewPassword.current.value ? inputNewPassword.current.value : null,
             apiUrl: inputApiUrl.current.value,
             streamUrl: inputStreamUrl.current.value,
             accessKey: inputAccessKey.current.value,
             secretKey: inputSecretKey.current.value ? inputSecretKey.current.value : null
         }, token)
-            .then(result => {
+        .then(result => {
                 if (result) {
                     setError('');
+                    /*
                     inputSecretKey.current.value = '';
                     inputNewPassword.current.value = '';
                     inputConfirmPassword.current.value = '';
+                    */
                     return setSuccess(`Settings saved successfully!`);
                 }
                 else {
@@ -73,7 +80,7 @@ function Settings() {
                 console.error(err.response ? err.response.data : err.message);
                 return setError(`Can't update the settings.`);
             })
-            */
+            
     }
 
     return (
@@ -84,19 +91,26 @@ function Settings() {
 
                 <div className="row">
                     <div className="col-12">
-                        <div className="card card-body border-0 shadow mb-4">
-                            <form>
+                        <div className="card card-body border-0 shadow mb-4">                            
+                            <form autoComplete="off">
                                 <h2 className="h5 mb-4">General Info</h2>
-                                {settings.email}
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div className="form-group">
-                                            <label htmlFor="email_">Email</label>
-                                            <input ref={inputEmail} className="form-control" id="email_"
+                                            <label htmlFor="email">Email</label>
+                                            <input ref={inputEmail} className="form-control" id="email"
                                                    type="email" placeholder="name@company.com" autoComplete="off" />
                                         </div>
                                     </div>
-                                </div>
+                                    <div className="col-md-6 mb-3">
+                                        <div className="form-group">
+                                            <label htmlFor="login">Login</label>
+                                            <input ref={inputLogin} className="form-control" id="login"
+                                                   type="text" placeholder="" autoComplete="off" />
+                                        </div>
+                                    </div>                                    
+                                </div> 
+                                {/*
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <div>
@@ -111,7 +125,59 @@ function Settings() {
                                         </div>
                                     </div>
                                 </div>
-                              
+                                */}
+                                <h2 className="h5 mb-4">Settings</h2>
+
+                                <div className="row">
+                                <div className="col-md-1 mb-2">
+                                    <label htmlFor="apiUrl">API Url</label>
+                                </div>                                    
+                                    <div className="col-md-6 mb-3">
+                                        <div className="form-group">
+                                            
+                                            <input ref={inputApiUrl} className="form-control" id="apiUrl"
+                                                   type="text" placeholder="" autoComplete="off" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                <div className="col-md-1 mb-2">
+                                    <label htmlFor="streamUrl">streamUrl</label>
+                                </div>
+                                    <div className="col-md-6 mb-3">
+                                        <div className="form-group">                                            
+                                            <input ref={inputStreamUrl} className="form-control" id="streamUrl"
+                                                   type="text" placeholder="" autoComplete="off" />
+                                        </div>
+                                    </div>
+                                </div>    
+                                <div className="row">
+                                <div className="col-md-1 mb-2">
+                                    <label htmlFor="accessKey">Acess key</label>
+                                </div>
+                                    <div className="col-md-6 mb-3">
+                                        <div className="">                                            
+                                            <input ref={inputAccessKey} className="form-control" id="accessKey"
+                                                   type="text" placeholder="" autoComplete="off" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                <div className="col-md-1 mb-2">
+                                    <label htmlFor="secretKey">Secret Key</label>
+                                </div>
+                                    <div className="col-md-6 mb-3">
+                                        <div className="form-group">
+                                           
+                                            <input ref={inputSecretKey } className="form-control" id="secretKey"
+                                                   type="password" placeholder="" autoComplete="off" />
+                                        </div>
+                                    </div>
+                                </div>                              
+                                  
+     
+
+
                                 <div className="row">
                                     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap">
                                         <div className="col-sm-3">
