@@ -4,6 +4,7 @@ import Dashboard from './private/Dashboard/Dashboard';
 //import Orders from './private/Orders/Orders';
 import NotFound from './components/Pages/NotFound';
 import Settings from './private/Settings/Settings';
+import Symbols from './private/Symbols/Symbols';
 import Home from './public/Home/Home';
 import Login from './public/Login/Login';
 
@@ -33,7 +34,10 @@ function Routes() {
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard">
                     <Dashboard />
-                </PrivateRoute>                
+                </PrivateRoute>     
+                <PrivateRoute path="/symbols">
+                    <Symbols />
+                </PrivateRoute>                           
                 {/* <PrivateRoute path="/orders/:symbol?">
                     <Orders />
                 </PrivateRoute>
