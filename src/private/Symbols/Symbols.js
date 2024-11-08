@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 // import { getSettings, updateSettings } from '../../services/SettingsService';
 // import Symbols from '../Settings/Symbols';
 import Menu from '../../components/Menu/Menu';
-import { getSettings, updateSettings } from '../../services/SettingsService';
+import { getSymbols } from '../../services/symbolsService';
 
-function Settings() {
+function symbols() {
 
     const inputLogin = useRef('');
     const inputEmail = useRef('');
@@ -24,13 +24,15 @@ function Settings() {
 
     useEffect(()=>{
         const token = localStorage.getItem('token');        
-        getSettings(token)
-          .then(settings=> {
-            inputLogin.current.value = settings.login;
-            inputEmail.current.value = settings.email;            
-            inputApiUrl.current.value = settings.apiUrl;            
-            inputStreamUrl.current.value = settings.streamUrl;
-            inputAccessKey.current.value = settings.accessKey;
+        getSymbols(token)
+          .then(symbl=> {
+
+            console.log("symbl", symbl);
+            //inputLogin.current.value = settings.login;
+            //inputEmail.current.value = settings.email;            
+            //inputApiUrl.current.value = settings.apiUrl;            
+            //inputStreamUrl.current.value = settings.streamUrl;
+            //inputAccessKey.current.value = settings.accessKey;
             // inputSecretKey.current.value = settings.secretKey;            
           })
           .catch(err=> {
@@ -39,8 +41,6 @@ function Settings() {
             setError(err.response ? err.response.data : err.message);
           })
     }, [])
-
-
     function onFormSubmit(event) {
         event.preventDefault();
 
@@ -85,7 +85,6 @@ function Settings() {
         <Menu />
             
             <main className="content">
-
                 <div className="row">
                     <div className="col-12">
                         <div className="card card-body border-0 shadow mb-4">         
@@ -100,4 +99,4 @@ function Settings() {
     );
 }
 
-export default Settings;
+export default symbols;
