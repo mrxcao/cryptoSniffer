@@ -17,3 +17,8 @@ export async function updateSymbols(props, authorization) {
     const response = await axios.put(`${API_URL}/symbols`,props,{headers}  );
     return response.data;
 }
+export async function syncSymbols(authorization) {    
+    const headers = {authorization}
+    const response = await axios.post(`${API_URL}/symbols`,{},{headers}  );
+    return response.data;
+}
