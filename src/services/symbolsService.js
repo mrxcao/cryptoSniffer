@@ -19,6 +19,6 @@ export async function updateSymbols(props, authorization) {
 }
 export async function syncSymbols(authorization) {    
     const headers = {authorization}
-    const response = await axios.post(`${API_URL}/symbols`,{},{headers}  );
+    const response = await axios.post(`${API_URL}/symbols/syncro`,{},{headers}  );
     return response.data;
 }

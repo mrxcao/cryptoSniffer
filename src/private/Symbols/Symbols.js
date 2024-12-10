@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu';
-import { getSymbols } from '../../services/symbolsService';
+import { getSymbols, syncSymbols } from '../../services/symbolsService';
 import SymbolRow from './SymbolRow';
 import { ERR_TX_INVALID_PROPERTIES_FOR_TYPE } from 'web3';
 
@@ -12,6 +12,8 @@ function symbols() {
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [isSyncing, setIsSyncing] = useState(false);
+
 
     useEffect(()=>{
         const token = localStorage.getItem('token');        
@@ -65,6 +67,23 @@ function symbols() {
             
     }
 
+    function onClickSync(event) {
+        setIsSyncing(true);
+        const token = localStorage.getItem('token');
+        setSymbols([])
+        syncSymbols(token)
+          .then(symbols=> {
+            setSymbols(symbols)
+            setIsSyncing(false);
+          })
+          .catch(err=> {
+            if (err.response && err.response.status === 401) return history.push('/')
+            console.error(err.message);
+            setError(err.response ? err.response.data : err.message);
+            setSuccess('')
+          })
+    }
+
     return (
         <React.Fragment>      
         <Menu />
@@ -82,6 +101,17 @@ function symbols() {
                                 </div>
                             </div>                            
 
+                            
+                            <div className="row align-item-left ">
+                                <div className="col">                            
+                                    <button className="btn btn-primary animate-up-2" type="button"
+                                            onClick={onClickSync} disabled={isSyncing}>
+                                                {isSyncing ? 'Syncing...' : 'Sync'} 
+                                    </button>    
+                                    <span className="text-muted"> {symbols.length > 0 ? symbols.length+ ' symbols' : '...'}</span>
+                                </div>
+                            </div>
+                                  
                             <div className="table-responsive">
                                 <table className="table align-items-center table-flush">
                                     <thead className="thead-light" >
@@ -98,14 +128,7 @@ function symbols() {
                                         { symbols.map(item => <SymbolRow key={item.id} data={item} /> )}
                                     </tbody>                                      
                                     <tfoot>
-                                        <tr>
-                                            <td colSpan="2">
-                                                <button className="btn btn-primary animate-up-2" type="button">
-                                                    Sync
-                                                </button>
-                                            </td>
-                                            
-                                        </tr>
+
                                     </tfoot>
                                 </table>
                             </div>
