@@ -1,9 +1,8 @@
-import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Dashboard from './private/Dashboard/Dashboard';
 //import Orders from './private/Orders/Orders';
 import NotFound from './components/Pages/NotFound';
-import Settings from './private/Settings/Settings';
+import Settings from './private/Settings/settings';
 import Symbols from './private/Symbols/Symbols';
 import Home from './public/Home/Home';
 import Login from './public/Login/Login';

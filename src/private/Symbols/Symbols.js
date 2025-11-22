@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu';
 import { getSymbols, syncSymbols } from '../../services/symbolsService';
 import SymbolRow from './SymbolRow';
-import { ERR_TX_INVALID_PROPERTIES_FOR_TYPE } from 'web3';
 
 function symbols() {
 
     const [symbols, setSymbols] = useState([])
+    const [filterText, setFilterText] = useState('');
+    const [sortConfig, setSortConfig] = useState({ key: 'symbol', direction: 'asc' });    
     const history = useHistory();
 
     const [error, setError] = useState('');
@@ -84,6 +85,51 @@ function symbols() {
           })
     }
 
+    function handleSort(key) {
+    setSortConfig((prev) => {
+        if (prev.key === key) {
+        // troca asc <-> desc
+        return {
+            key,
+            direction: prev.direction === 'asc' ? 'desc' : 'asc',
+        };
+        }
+        // primeira vez que clica nessa coluna
+        return { key, direction: 'asc' };
+    });
+    }
+
+    function getSortIndicator(key) {
+    if (sortConfig.key !== key) return null;
+    return sortConfig.direction === 'asc' ? ' ▲' : ' ▼';
+    }
+
+    // Filtra e ordena os symbols antes de renderizar
+    const filteredAndSortedSymbols = [...symbols]
+    // FILTRO
+    .filter((item) =>
+        filterText
+        ? item.symbol.toLowerCase().includes(filterText.toLowerCase())
+        : true
+    )
+    // ORDENAÇÃO
+    .sort((a, b) => {
+        if (!sortConfig?.key) return 0;
+
+        const { key, direction } = sortConfig;
+        const dir = direction === 'asc' ? 1 : -1;
+
+        const valA = a[key];
+        const valB = b[key];
+
+        // trata número vs string
+        if (typeof valA === 'number' && typeof valB === 'number') {
+        return (valA - valB) * dir;
+        }
+
+        return String(valA).localeCompare(String(valB)) * dir;
+    });
+
     return (
         <React.Fragment>      
         <Menu />
@@ -101,31 +147,57 @@ function symbols() {
                                 </div>
                             </div>                            
 
-                            
+
+
                             <div className="row align-item-left ">
                                 <div className="col">                            
-                                    <button className="btn btn-primary animate-up-2" type="button"
-                                            onClick={onClickSync} disabled={isSyncing}>
-                                                {isSyncing ? 'Syncing...' : 'Sync'} 
+                                    <button
+                                    className="btn btn-primary animate-up-2"
+                                    type="button"
+                                    onClick={onClickSync}
+                                    disabled={isSyncing}
+                                    >
+                                    {isSyncing ? 'Syncing...' : 'Sync'} 
                                     </button>    
-                                    <span className="text-muted"> {symbols.length > 0 ? symbols.length+ ' symbols' : '...'}</span>
+                                    <span className="text-muted">
+                                    {' '}
+                                    {symbols.length > 0 ? symbols.length + ' symbols' : '...'}
+                                    </span>
+                                </div>
+
+                                <div className="col text-end">
+                                    <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Filtrar por symbol..."
+                                    value={filterText}
+                                    onChange={(e) => setFilterText(e.target.value)}
+                                    />
                                 </div>
                             </div>
-                                  
+
                             <div className="table-responsive">
                                 <table className="table align-items-center table-flush">
                                     <thead className="thead-light" >
                                         <tr>
-                                            <th className="border-bottom" scope="col"> Symbol</th>
-                                            <th className="border-bottom" scope="col"> BAse Prec</th>
-                                            <th className="border-bottom" scope="col"> Quote Prec</th>
-                                            <th className="border-bottom" scope="col"> Min Notional</th>
-                                            <th className="border-bottom" scope="col"> Min Lot Size</th>
+                                            <th className="border-bottom" scope="col" 
+                                                style={{ cursor: 'pointer' }}
+                                                onClick={() => handleSort('symbol')}> Symbol</th>
+                                            <th className="border-bottom" scope="col" 
+                                                style={{ cursor: 'pointer' }} onClick={() => handleSort('basePrecision')}> BAse Prec</th>
+                                            <th className="border-bottom" scope="col"
+                                                style={{ cursor: 'pointer' }} onClick={() => handleSort('quotePrecision')}> Quote Prec</th>
+                                            <th className="border-bottom" scope="col"                                                
+                                                style={{ cursor: 'pointer' }} onClick={() => handleSort('minNotional')}> Min Notional</th>
+                                            <th className="border-bottom" scope="col" 
+                                                style={{ cursor: 'pointer' }} onClick={() => handleSort('minLotSize')} > Min Lot Size</th>
                                             <th > - </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        { symbols.map(item => <SymbolRow key={item.id} data={item} /> )}
+                                        {filteredAndSortedSymbols.map((item) => (
+                                            <SymbolRow key={item.id || item.symbol} data={item} />
+                                        ))}
                                     </tbody>                                      
                                     <tfoot>
 
