@@ -150,6 +150,18 @@ function symbols() {
 
 
                             <div className="row align-item-left ">
+
+
+                                <div className="col text-end">
+                                    <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Filtrar por symbol..."
+                                    value={filterText}
+                                    onChange={(e) => setFilterText(e.target.value)}
+                                    />
+                                </div>
+
                                 <div className="col">                            
                                     <button
                                     className="btn btn-primary animate-up-2"
@@ -163,17 +175,7 @@ function symbols() {
                                     {' '}
                                     {symbols.length > 0 ? symbols.length + ' symbols' : '...'}
                                     </span>
-                                </div>
-
-                                <div className="col text-end">
-                                    <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Filtrar por symbol..."
-                                    value={filterText}
-                                    onChange={(e) => setFilterText(e.target.value)}
-                                    />
-                                </div>
+                                </div>                                
                             </div>
 
                             <div className="table-responsive">

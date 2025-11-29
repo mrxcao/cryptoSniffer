@@ -1,24 +1,24 @@
-import React  from 'react';
-import Menu from '../../components/Menu/Menu';
-
+import TempletePage from '../../components/Pages/templetePage';
+import NewOrderButton from '../Orders/NewOrderButton';
+import CandleChart from './CandleChart';
 function Dashboard() {
-
-
     return (
-        <React.Fragment>      
-        <Menu />
-            
-            <main className="content">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="card card-body border-0 shadow mb-4">
-                            
-                        </div>
-                    </div>
+        <TempletePage titulo="Dashboard">
+            <div className="ntm-toolbar mb-0 p-1">
+               <NewOrderButton />
+            </div>
+            <div className=''>
+                <CandleChart />
+            </div>            
+            <div className='row'>    
+                <div className='col-6'>
+                    COL 1
                 </div>
-
-            </main>
-        </React.Fragment>
+                <div className='col-6'>
+                    COL 2
+                </div>
+            </div>
+        </TempletePage>
     );
 }
 
