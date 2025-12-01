@@ -74,7 +74,12 @@ function symbols() {
         setSymbols([])
         syncSymbols(token)
           .then(symbols=> {
-            setSymbols(symbols)
+            // setSymbols(symbols)
+            getSymbols(token)
+                .then(symbols=> {
+                    setSymbols(symbols)
+                })
+            
             setIsSyncing(false);
           })
           .catch(err=> {
