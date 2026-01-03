@@ -1,7 +1,7 @@
 import TempletePage from '../../components/Pages/templetePage';
 import NewOrderButton from '../Orders/NewOrderButton';
 import CandleChart from './CandleChart';
-import Ticker from './Ticker/Tic    ker';
+import Ticker from './Ticker/Ticker';
 function Dashboard() {
     return (
         <TempletePage titulo="Dashboard">
