@@ -1,6 +1,7 @@
 import TempletePage from '../../components/Pages/templetePage';
 import NewOrderButton from '../Orders/NewOrderButton';
 import CandleChart from './CandleChart';
+import Ticker from './Ticker/Tic    ker';
 function Dashboard() {
     return (
         <TempletePage titulo="Dashboard">
@@ -12,7 +13,7 @@ function Dashboard() {
             </div>            
             <div className='row'>    
                 <div className='col-6'>
-                    COL 1
+                    <Ticker />
                 </div>
                 <div className='col-6'>
                     COL 2

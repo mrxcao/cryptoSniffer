@@ -29,7 +29,7 @@ function Home() {
         <div className="container mt-5">
           <div className="row">
             <div className="col-lg-6">
-              <h1 ClassName="appTitle">CryptoSniffer tá on!</h1>
+              <h1 className="appTitle">CryptoSniffer tá on!</h1>
               <p>Farejador de boas oportunidades.</p>
               <a href="#" className="btn btn-primary">Saiba Mais</a>
             </div>
