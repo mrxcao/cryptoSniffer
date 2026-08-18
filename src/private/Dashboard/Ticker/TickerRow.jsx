@@ -1,21 +1,41 @@
-import React from "react";
+import { useMemo } from "react";
 
-const TickerRow = React.memo(function TickerRow({ Symbol, data }) {
-    if (!data) return null;
+/**
+ * props:
+ * - symbol
+ * - data
+ */
+function TickerRow(props) {
 
     function getClass(){
-        return parseFloat(data.c) >= parseFloat(data.o) ? 'text-success' : 'text-danger';
+        return parseFloat(props.data.c) > parseFloat(props.data.o)
+         ? "text-success fw-bold"
+         : "text-danger fw-bold";
     }
 
-    return (
-        <tr>
-            <td className="text-gray-900 fw-bold">{Symbol}</td>
-            <td className={getClass()}> {Number(data.c).toFixed(3)}</td>
-            <td>{Number(data.o).toFixed(3)}</td>
-            <td>{Number(data.h).toFixed(3)}</td>
-            <td>{Number(data.l).toFixed(3)}</td>
-        </tr>
-    );
-});
+    return useMemo(() => {
+        if (!props.data) return null;
+
+        return (
+            <tr>
+                <td className="text-gray-900 fw-bold">
+                    {props.symbol}
+                </td>
+                <td className={getClass()}>
+                    {props.data.c.substring(0, 8)}
+                </td>
+                <td className="text-gray-900">
+                    {props.data.o.substring(0, 8)}
+                </td>
+                <td className="text-gray-900">
+                    {props.data.h.substring(0, 8)}
+                </td>
+                <td className="text-gray-900">
+                    {props.data.l.substring(0, 8)}
+                </td>
+            </tr>
+        );
+    }, [props.symbol, props.data])
+}
 
 export default TickerRow;

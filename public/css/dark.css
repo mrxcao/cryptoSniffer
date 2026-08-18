@@ -1,0 +1,199 @@
+/* Dark theme overrides — activated via <html data-theme="dark">. Loaded after volt.css/style.css. */
+
+html[data-theme="dark"] {
+    --dark-bg-body: #0f1420;
+    --dark-bg-surface: #161d2b;
+    --dark-bg-surface-alt: #1c2434;
+    --dark-bg-input: #1c2434;
+    --dark-border: #2a3346;
+    --dark-text-primary: #e5e9f2;
+    --dark-text-secondary: #aab2c5;
+    --dark-text-muted: #7b8494;
+    --dark-link: #8aa9ff;
+
+    background-image: none;
+    background-color: var(--dark-bg-body);
+    color-scheme: dark;
+}
+
+html[data-theme="dark"] body {
+    background-color: var(--dark-bg-body);
+    color: var(--dark-text-primary);
+}
+
+/* Header / navbar */
+html[data-theme="dark"] header {
+    background-color: var(--dark-bg-surface);
+    color: var(--dark-text-secondary);
+    border-bottom: 1px solid var(--dark-border);
+}
+
+html[data-theme="dark"] .theme-toggle {
+    border-color: var(--dark-border);
+    color: var(--dark-text-secondary);
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Main content area */
+html[data-theme="dark"] main,
+html[data-theme="dark"] .content {
+    background-color: var(--dark-bg-body);
+    color: var(--dark-text-primary);
+}
+
+/* Cards */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .card-body,
+html[data-theme="dark"] .bg-white {
+    background-color: var(--dark-bg-surface) !important;
+    color: var(--dark-text-primary);
+}
+
+html[data-theme="dark"] .card-header,
+html[data-theme="dark"] .card-footer {
+    background-color: var(--dark-bg-surface-alt) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-text-primary);
+}
+
+html[data-theme="dark"] .bg-soft {
+    background-color: var(--dark-bg-body) !important;
+}
+
+html[data-theme="dark"] .shadow,
+html[data-theme="dark"] .shadow-sm,
+html[data-theme="dark"] .shadow-lg {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.45) !important;
+}
+
+html[data-theme="dark"] .border-light,
+html[data-theme="dark"] [class*="border-"] {
+    border-color: var(--dark-border) !important;
+}
+
+/* Text utilities */
+html[data-theme="dark"] .text-gray-900,
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6 {
+    color: var(--dark-text-primary) !important;
+}
+
+html[data-theme="dark"] .text-muted {
+    color: var(--dark-text-muted) !important;
+}
+
+html[data-theme="dark"] a {
+    color: var(--dark-link);
+}
+
+/* Tables */
+html[data-theme="dark"] .table {
+    color: var(--dark-text-primary);
+    border-color: var(--dark-border);
+}
+
+html[data-theme="dark"] .table > :not(caption) > * > * {
+    background-color: transparent;
+    color: var(--dark-text-primary);
+    border-bottom-color: var(--dark-border);
+    box-shadow: none;
+}
+
+html[data-theme="dark"] .thead-light th,
+html[data-theme="dark"] .table thead th {
+    background-color: var(--dark-bg-surface-alt) !important;
+    color: var(--dark-text-secondary) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .table-hover > tbody > tr:hover > * {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    color: var(--dark-text-primary);
+}
+
+/* Forms */
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select {
+    background-color: var(--dark-bg-input);
+    border-color: var(--dark-border);
+    color: var(--dark-text-primary);
+}
+
+html[data-theme="dark"] .form-control::placeholder {
+    color: var(--dark-text-muted);
+}
+
+html[data-theme="dark"] .form-control:focus,
+html[data-theme="dark"] .form-select:focus {
+    background-color: var(--dark-bg-input);
+    color: var(--dark-text-primary);
+}
+
+html[data-theme="dark"] label,
+html[data-theme="dark"] .form-check-label {
+    color: var(--dark-text-secondary);
+}
+
+/* Buttons */
+html[data-theme="dark"] .btn-gray-800 {
+    background-color: #2a3346;
+    border-color: #2a3346;
+    color: var(--dark-text-primary);
+}
+
+/* Dropdowns */
+html[data-theme="dark"] .dropdown-menu {
+    background-color: var(--dark-bg-surface-alt);
+    border-color: var(--dark-border);
+}
+
+html[data-theme="dark"] .dropdown-item {
+    color: var(--dark-text-secondary);
+}
+
+html[data-theme="dark"] .dropdown-item:hover,
+html[data-theme="dark"] .dropdown-item:focus {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: var(--dark-text-primary);
+}
+
+html[data-theme="dark"] .dropdown-divider {
+    border-color: var(--dark-border);
+}
+
+/* Alerts keep their semantic colors but blend better on dark surfaces */
+html[data-theme="dark"] .alert-danger {
+    background-color: rgba(220, 53, 69, 0.15);
+    border-color: rgba(220, 53, 69, 0.35);
+    color: #ff8a95;
+}
+
+html[data-theme="dark"] .alert-success {
+    background-color: rgba(25, 135, 84, 0.15);
+    border-color: rgba(25, 135, 84, 0.35);
+    color: #6fd89b;
+}
+
+/* Footer */
+html[data-theme="dark"] .footer {
+    background-color: var(--dark-bg-body);
+    color: var(--dark-text-muted);
+}
+
+/* Branding text shadow reads better on dark backgrounds */
+html[data-theme="dark"] .appTitle,
+html[data-theme="dark"] .alertTitle {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Sidebar is already dark by default (bg-gray-900); align its border with the rest of the theme */
+html[data-theme="dark"] .sidebar {
+    border-right: 1px solid var(--dark-border);
+}

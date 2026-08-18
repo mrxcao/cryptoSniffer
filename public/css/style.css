@@ -69,7 +69,32 @@ header {
     border-radius: 90px;
     cursor: pointer;
   }
-  
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+    padding: 0;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    color: #817d7d;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .theme-toggle .icon {
+    width: 18px;
+    height: 18px;
+  }
+
 
 
   html {    
